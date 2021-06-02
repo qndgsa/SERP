@@ -1,6 +1,14 @@
+import json
+
 from airium import Airium
 
 template = Airium()
+
+#load dataset
+with open('data.json', 'rb') as f:
+	data = json.load(f)
+with open('ad_no_image.json', 'rb') as d:
+	ad = json.load(d)
 
 template('<!DOCTYPE html>')
 with template.html(lang="pl"):
@@ -18,7 +26,9 @@ with template.html(lang="pl"):
                 template.img(id="searchbarimage",src="images/googlelogo_color_92x30dp.png")
                 # create search bar
                 with template.div(id="searchbar",type="text"):
-                    template("<input id=\"searchbartext\" type=\"text\" value=\"@!#$#!\" >")
+                    template("<input id=\"searchbartext\" type=\"text\" value=")
+                    template("\""+ ad['query'] +"\"")
+                    template(">")
                     with template.button(id="searchbarmic"):
                         template.img(src="images/googlemic.png")
                     with template.button(id="searchbarbutton"):
@@ -47,32 +57,59 @@ with template.html(lang="pl"):
                             "<li>Settings</li>")
                         template(
                             "<li>Tools</li>")
+
+        #search result part
         with template.div(id="searchresultsarea"):
             with template.p(id="searchresultsnumber"):
                 template(
                     "About x results (y seconds) ")
-                for i in range(10):
+                data.sort(key=lambda s: s['ranking'],reverse=True)
+                #10 search result, load from json file
+                position = 0
+                for item in data:
+                    if ad['ranking'] == position:
+                        # ad
+                        with template.div(klass="searchresult"):
+                            with template.h2():
+                                template(
+                                    ad['title'])
+                            with template.a():
+                                template(
+                                    ad['URL'])
+
+                            with template.p():
+                                template(
+                                    ad['description'])
+                            with template.p():
+                                template(
+                                    ad['rating comment'])
+                                with template.div(klass="rating"):
+                                    rating = ad['rating'] * 20
+                                    with template.div(klass="rating-upper", style=("width:" + str(rating) + "%")):
+                                        template(
+                                            "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
+                                    with template.div(klass="rating-lower"):
+                                        template(
+                                            "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
                     with template.div(klass="searchresult"):
                         with template.h2():
                             template(
-                                "Lock (computer science) - Wikipedia")
+                                item['title'])
                         with template.a():
                             template(
-                                "https://en.wikipedia.org/wiki/Lock_(computer_science)")
-                            with template.button():
-                                template("▼")
+                                item['URL'])
 
                         with template.p():
                             template(
-                                "In computer science, a lock or mutex (from mutual exclusion) is a synchronization mechanism for enforcing limits on access to a resource in an")
-                        with template.p():
-                            template(
-                                "environment where there are many threads of execution.")
+                                item['description'])
+                    position+=1
 
+
+            #related
             with template.div(id="relatedsearches"):
                 with template.h3():
                     template(
-                        "Searches related to @!#$#!")
+                        "Searches related to" + ad["query"])
                 with template.div(klass="relatedlists"):
                     with template.ul(id="relatedleft"):
                             template(
@@ -92,6 +129,7 @@ with template.html(lang="pl"):
                                 "<li>g</li>")
                             template(
                                 "<li>h</li>")
+            #page list bar
             with template.div(klass="pagebar"):
                 with template.ul(klass="pagelist"):
                     template(
@@ -118,7 +156,7 @@ with template.html(lang="pl"):
                         "<li class=\"pagelistnumber\">10</li>")
                     template(
                         "<li class=\"pagelistnext\">Next</li>")
-
+        #create footer
         with template.div(id="footer"):
             with template.div(id="footerlocation"):
                 with template.p():
@@ -140,5 +178,5 @@ with template.html(lang="pl"):
 html = str(template) # casting to string extracts the value
 
 #output html file
-with open('search_example.html', 'w') as f:
+with open('search_example.html', 'w', encoding='utf-8') as f:
     f.write(str(html))

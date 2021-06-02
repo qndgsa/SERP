@@ -1,3 +1,32 @@
+.rating {
+  unicode-bidi: bidi-override;
+  color: #c5c5c5;
+  font-size: 10px;
+  height: 9px;
+  width: 50px;
+  margin: ;
+  position: relative;
+  padding: 0;
+  text-shadow: 0px 1px 0 #a2a2a2;
+}
+
+.rating-upper {
+  color: #e7711b;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.rating-lower {
+  padding: 0;
+  display: flex;
+  z-index: 0;
+}
+
 body {
     min-height: 100%;
     position: relative;
@@ -410,3 +439,6 @@ html, body {
 #footerlocation p:nth-of-type(1) {
     font-weight: bold;
 }
+
+
+
