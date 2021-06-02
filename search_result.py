@@ -67,7 +67,7 @@ with template.html(lang="pl"):
                 #10 search result, load from json file
                 position = 0
                 for item in data:
-                    if ad['ranking'] == position:
+                    if ad['position'] == position:
                         # ad
                         with template.div(klass="searchresult"):
                             with template.h2():
