@@ -23,40 +23,41 @@ with template.html(lang="pl"):
         #create header
         with template.div(id="header"):
             with template.div(id="topbar"):
-                template.img(id="searchbarimage",src="images/googlelogo_color_92x30dp.png")
+                template.img(id="searchbarimage",src="images/googlelogo_color_272x92dp.png")
                 # create search bar
                 with template.div(id="searchbar",type="text"):
                     template("<input id=\"searchbartext\" type=\"text\" value=")
                     template("\""+ ad['query'] +"\"")
                     template(">")
                     with template.button(id="searchbarmic"):
-                        template.img(src="images/googlemic.png")
+                        template.img(src="images/Google_mic.svg.png")
                     with template.button(id="searchbarbutton"):
                         with template.svg(focusable="false", xmlns="http://www.w3.org/2000/svg", viewBox="0 0 24 24"):
                             template(
                                 "<path d=\"M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\"></path>")
                 template("<div id=\"boxesicon\"></div>")
-                template("<div id=\"bellicon\"></div>")
-                template("<img id=\"profileimage\" src=\"images/photo.png\">")
+                template("<img id=\"bellicon\" src=\"images/google_apps.png\">")
+                template("<img id=\"profileimage\" src=\"images/google_account.png\">")
             # create category options
             with template.div(id="optionsbar"):
-                with template.ul(id="optionsmenu1"):
-                        template(
-                            "<li id=\"optionsmenuactive\">ALL</li>")
-                        template(
-                            "<li>NEWS</li>")
-                        template(
-                            "<li>VIDEOS</li>")
-                        template(
-                            "<li>IMAGES</li>")
-                        template(
-                            "<li>MORE</li>")
-
-                with template.ul(id="optionsmenu2"):
-                        template(
-                            "<li>Settings</li>")
-                        template(
-                            "<li>Tools</li>")
+                template("<ul id=\"optionsmenu1\"></ul>")
+            #     with template.ul(id="optionsmenu1"):
+            #             template(
+            #                 "<li id=\"optionsmenuactive\">ALL</li>")
+            #             template(
+            #                 "<li>NEWS</li>")
+            #             template(
+            #                 "<li>VIDEOS</li>")
+            #             template(
+            #                 "<li>IMAGES</li>")
+            #             template(
+            #                 "<li>MORE</li>")
+            #
+            #     with template.ul(id="optionsmenu2"):
+            #             template(
+            #                 "<li>Settings</li>")
+            #             template(
+            #                 "<li>Tools</li>")
 
         #search result part
         with template.div(id="searchresultsarea"):

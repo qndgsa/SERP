@@ -201,17 +201,16 @@ html, body {
 }
 
 #bellicon {
-    width: 20px;
-    height: 20px;
-    background-color: rgb(105, 105, 105);
-    background-image: url('images/bell.png');
-    background-size: 12px;
-    background-position: 50% 50%;
+    width: 32px;
+    height: 32px;
+    background-color: rgb(255, 255, 255);
+    background-size: 30px;
+    background-position: 25% 25%;
     background-repeat: no-repeat;
-    border-radius: 30px;
+    border-radius: 20px;
     position: absolute;
     right: 90px;
-    bottom: 18px;
+    bottom: 11px;
 }
 
 #profileimage {
