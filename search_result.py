@@ -7,7 +7,7 @@ template = Airium()
 
 # data config
 entry_file = "data.json"
-ad_file = "1.json"
+ad_file = "ad_no_image.json"
 
 sequence = "EEEAE"  # the sequence determine the display order of entries by category
                     # "E" = effective, "I" = ineffective, "U" = unknown, "A" = Ad
@@ -21,9 +21,9 @@ fill = True  # when set it as True, if the length is lower than total number of 
 try:
     with open(entry_file, 'rb') as f:
         data = json.load(f)
-    effective = data[0]['effective']
-    ineffective = data[0]['ineffective']
-    unknown = data[0]['unknown']
+    effective = data['effective']
+    ineffective = data['ineffective']
+    unknown = data['unknown']
 
 # entry file exception
 except IOError:
@@ -109,7 +109,7 @@ with template.html(lang="pl"):
                 # create search bar
                 with template.div(id="searchbar", type="text"):
                     template("<input id=\"searchbartext\" type=\"text\" value=")
-                    template("\"" + data[0]['query'] + "\"")
+                    template("\"" + data['query'] + "\"")
                     template(">")
                     # with template.button(id="searchbarmic"):
                     #     template.img(src="images/Google_mic.svg.png")
