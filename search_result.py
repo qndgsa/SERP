@@ -9,7 +9,7 @@ template = Airium()
 entry_file = "data.json"
 ad_file = "ad_no_image.json"
 
-sequence = "EEEAE"  # the sequence determine the display order of entries by category
+sequence = "EEEAIIIUUUU"  # the sequence determine the display order of entries by category
                     # "E" = effective, "I" = ineffective, "U" = unknown, "A" = Ad
                     # if gave number of the assigned category is more than entry_file's, program will replace
                     # them with other category in E,I,U order until run out all entries.
@@ -48,9 +48,10 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos):
             with template.a():
                 template(
                     entry['URL'])
-            with template.h2():
-                template(
-                    entry['title'])
+            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;"):
+                with template.h2():
+                    template(
+                        entry['title'])
             with template.p():
                 template(
                     entry['description'])
@@ -63,9 +64,10 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos):
             with template.a():
                 template(
                     entry['URL'])
-            with template.h2():
-                template(
-                    entry['title'])
+            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;"):
+                with template.h2():
+                    template(
+                        entry['title'])
             with template.p():
                 template(
                     entry['description'])
@@ -78,9 +80,10 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos):
             with template.a():
                 template(
                     entry['URL'])
-            with template.h2():
-                template(
-                    entry['title'])
+            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;"):
+                with template.h2():
+                    template(
+                        entry['title'])
             with template.p():
                 template(
                     entry['description'])
@@ -161,9 +164,10 @@ with template.html(lang="pl"):
                                 with template.a():
                                     template(
                                         entry['URL'])
-                                with template.h2():
-                                    template(
-                                        entry['title'])
+                                with template.a(href=entry['URL'], target="_blank",style="text-decoration: none;"):
+                                    with template.h2():
+                                        template(
+                                            entry['title'])
                                 with template.p():
                                     template(
                                         entry['description'])
@@ -171,62 +175,105 @@ with template.html(lang="pl"):
 
                     if item == 'I':
                         if I_counter >= len(ineffective):
-                            entry_exception()
+                            E_counter, I_counter, U_counter = entry_exception(E_counter, I_counter, U_counter, "I")
                         else:
                             entry = ineffective[I_counter]
                             with template.div(klass="searchresult"):
                                 with template.a():
                                     template(
                                         entry['URL'])
-                                with template.h2():
-                                    template(
-                                        entry['title'])
+                                with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;"):
+                                    with template.h2():
+                                        template(
+                                            entry['title'])
                                 with template.p():
                                     template(
                                         entry['description'])
                             I_counter += 1
                     if item == 'U':
                         if U_counter >= len(unknown):
-                            entry_exception()
+                            E_counter, I_counter, U_counter = entry_exception(E_counter, I_counter, U_counter, "U")
                         else:
                             entry = unknown[U_counter]
                             with template.div(klass="searchresult"):
                                 with template.a():
                                     template(
                                         entry['URL'])
-                                with template.h2():
-                                    template(
-                                        entry['title'])
+                                with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;"):
+                                    with template.h2():
+                                        template(
+                                            entry['title'])
                                 with template.p():
                                     template(
                                         entry['description'])
                             U_counter += 1
                     if item == 'A':
                         # ad
-                        if ad_loaded:
-                            with template.div(klass="searchresult"):
-                                with template.a():
-                                    template(
-                                        ad['URL'])
-                                with template.h2():
-                                    template(
-                                        "<b style=\"color:black\">Ad</b> " + ad['title'])
-
-                                with template.p():
-                                    template(
-                                        ad['description'])
-                                    with template.div(klass="rating"):
-                                        rating = ad['rating'] * 20
-                                        with template.div(klass="rating-upper", style=("width:" + str(rating) + "%")):
-                                            template(
-                                                "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
-                                        with template.div(klass="rating-lower"):
-                                            template(
-                                                "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
-                                        with template.div(klass="rating-comment"):
-                                            with template.p():
+                        if ad['img_ad']:
+                            with template.card(style="padding:10px;"):
+                                template(
+                                    "<b style=\"color:black;display:inline-block;\">Ad · &nbsp; </b>" + "<p style=\"display:inline-block;\">"+" "+data['query']+"</p>")
+                                with template.div(klass="img-ad", style="height:235px;width:135px;z-index:2;border-radius: 25px;padding:15px; margin-top: 30px;margin-left: 10px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"):
+                                    with template.div(klass="container"):
+                                        with template.div(klass="img"):
+                                            with template.a(href=ad['URL'],target="_blank"):
+                                                with template.div(klass="img-container",style="padding:4px;background-color:#F9F9F9"):
+                                                    with template.div(klass="img-container-sizer",style="display:inline-block;text-align:center;height:114px;width:114px"):
+                                                        template(
+                                                            "<span class =\"space\"> </span> ")
+                                                        template(
+                                                            "<img style=\"border:none;margin:0;vertical-align:middle;border-radius:0%\" height=\"114\" src=\""+ad['img_link']+"\" width=\"114\">")
+                                    with template.div(klass="ad-title",style="width:135px; height: 100px;"):
+                                        with template.div(klass="title-container"):
+                                            with template.div(klass="title", style="height:50px"):
+                                                with template.a(href=ad['URL'],target="_blank",style="text-decoration: none;"):
+                                                    with template.span(klass="title-text",style="-webkit-line-clamp:1;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"):
+                                                        template(
+                                                            ad['title'])
+                                            with template.div(klass="price"):
                                                 template(
-                                                    ad['rating comment'])
+                                                    ad['price'])
+                                            with template.div(klass="brand"):
+                                                with template.span(klass="brand-text",style="font-size:10px;"):
+                                                    template(
+                                                        ad['brand'])
+                                        with template.div(klass="rating"):
+                                            rating = ad['rating'] * 20
+                                            with template.div(klass="rating-upper", style=("width:" + str(rating) + "%")):
+                                                template(
+                                                    "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
+                                            with template.div(klass="rating-lower"):
+                                                template(
+                                                    "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
+                                            with template.span(klass="rating-comment",style="color:black;"):
+                                                    template(
+                                                        "("+ad['rating comment']+")")
+                        else:
+                            if ad_loaded:
+                                with template.div(klass="searchresult"):
+                                    with template.a():
+                                        template(
+                                            ad['URL'])
+                                    with template.a(href=ad['URL'], target="_blank", style="text-decoration: none;"):
+                                        with template.h2():
+                                            template(
+                                                "<b style=\"color:black;\">Ad</b> · " + ad['title'])
+
+                                    with template.p():
+                                        template(
+                                            ad['description'])
+                                        with template.div(klass="rating"):
+                                            rating = ad['rating'] * 20
+                                            with template.div(klass="rating-upper", style=("width:" + str(rating) + "%")):
+                                                template(
+                                                    "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
+                                            with template.div(klass="rating-lower"):
+                                                template(
+                                                    "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>")
+                                            with template.div(klass="rating-comment"):
+                                                with template.p():
+                                                    template(
+                                                        ad['rating comment'])
                 if len(sequence) < (len(effective) + len(ineffective) + len(unknown)+1) and fill == True:
                     fill_up = (len(effective) + len(ineffective) + len(unknown)+1) - len(sequence)
                     for i in range(0,fill_up):
