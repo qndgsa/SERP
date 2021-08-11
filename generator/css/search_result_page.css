@@ -32,7 +32,6 @@
   top: 0;
 }
 
-
 body {
     min-height: 100%;
     position: relative;
@@ -180,7 +179,15 @@ html, body {
     margin-top: 35px;
 }
 
+.searchresult p {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .searchresult a {
+
     font-size: 14px;
     line-height: 7px;
     margin-bottom: 0px;
