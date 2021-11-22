@@ -79,7 +79,7 @@
     <div class="container">
         <div class="jumbotron cloudy-knoxville-gradient">
             <div class="container">
-                <h3>According to the information you read do you think is <span style="color: #3875d7"
+                <h3>According to the information you read, is <span style="color: #3875d7"
                     ><?php echo $_COOKIE['topic1']; ?></span> effective in treating <span style="color: #993333"
                     ><?php echo $_COOKIE['topic0']; ?></span>?
                 </h3>
@@ -90,11 +90,9 @@
                         <div class="textbox">
                             <i class="fas fa-lock"></i>
                             <select id="feedback" name="feedback">
-                                <option value="N">No – I think it is not effective</option>
-                                <option value="Y">Yes – I think it is effective</option>
-                                <option value="M">I’m not sure, there was not enough information for me to reach a
-                                    conclusion.
-                                </option>
+                                <option value="N">No- According to the information I read it is not effective</option>
+                                <option value="Y">Yes - According to the information I read it is effective</option>
+                                <option value="M">Maybe - According to the information I read it is inconclusive whether or not it is effective</option>
                             </select>
                         </div>
                         <button class="btn peach-gradient" type="submit">Submit</button>
