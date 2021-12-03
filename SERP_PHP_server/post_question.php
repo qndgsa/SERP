@@ -93,6 +93,7 @@
                                 <option value="N">No- According to the information I read it is not effective</option>
                                 <option value="Y">Yes - According to the information I read it is effective</option>
                                 <option value="M">Maybe - According to the information I read it is inconclusive whether or not it is effective</option>
+                                <option value="NS">Not sure, there was not enough  information for me to reach a conclusion.</option>
                             </select>
                         </div>
                         <button class="btn peach-gradient" type="submit">Submit</button>

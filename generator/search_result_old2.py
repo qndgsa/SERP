@@ -17,9 +17,8 @@ db = mysql.connector.connect(
     user="zw3hk",
     passwd="Fall2021!!",
     database="serp"
-) # database connection
+)  # database connection
 
-SERVER_URL = "http://cs.virginia.edu/~zw3hk/SERP/"
 config_id = 0  # config id in the config sequence data table
 query_id = 0  # query id in the config query data
 
@@ -87,12 +86,8 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
             with template.a():
                 template(
                     entry['URL'])
-#            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-#                            onclick="url(" + str(position_counter) + ");"):
             with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                                ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter),
-                                onclick="url(" + str(position_counter) + ");"):
-
+                            onclick="url(" + str(position_counter) + ");"):
                 with template.h2():
                     template(
                         entry['title'])
@@ -108,10 +103,7 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
             with template.a():
                 template(
                     entry['URL'])
-#            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-#                            onclick="url(" + str(position_counter) + ");"):
-            with template.a(href=entry['URL'], ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter)
-                            ,target="_blank", style="text-decoration: none;",
+            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
                             onclick="url(" + str(position_counter) + ");"):
                 with template.h2():
                     template(
@@ -128,11 +120,7 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
             with template.a():
                 template(
                     entry['URL'])
-#            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-#                            onclick="url(" + str(position_counter) + ");"):
-
             with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                            ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter),
                             onclick="url(" + str(position_counter) + ");"):
                 with template.h2():
                     template(
@@ -177,8 +165,7 @@ for combination in combination_data:
             if "A" in sequence:
                 ad = data['ad']
             query = data['query']
-
-            URL = SERVER_URL + query + "-" + sequence + str(i) + '.html'
+            URL = "http://cs.virginia.edu/~zw3hk/SERP/" + query + "-" + sequence + str(i) + '.html'
             print(query, entry_file, sequence, URL)
 
         # entry file exception
@@ -269,12 +256,8 @@ for combination in combination_data:
                                         with template.p():
                                             template(
                                                 entry['URL'])
-#                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-#                                                        onclick="url(" + str(position_counter) + ");"):
-                                        with template.a(href=entry['URL'],
-                                                        ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter)
-                                                    , target="_blank", style="text-decoration: none;",
-                                                            onclick="url(" + str(position_counter) + ");"):
+                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
+                                                        onclick="url(" + str(position_counter) + ");"):
                                             with template.h2():
                                                 template(
                                                     entry['title'])
@@ -295,10 +278,7 @@ for combination in combination_data:
                                         with template.p():
                                             template(
                                                 entry['URL'])
-#                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-#                                                        onclick="url(" + str(position_counter) + ");"):
                                         with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                                                        ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter),
                                                         onclick="url(" + str(position_counter) + ");"):
                                             with template.h2():
                                                 template(
@@ -321,14 +301,8 @@ for combination in combination_data:
                                         with template.p():
                                             template(
                                                 entry['URL'])
-#                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-#                                                        onclick="url(" + str(position_counter) + ");"):
-                                        with template.a(href=entry['URL'], target="_blank",
-                                                            style="text-decoration: none;",
-                                                            ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(
-                                                                position_counter),
-                                                            onclick="url(" + str(position_counter) + ");"):
-
+                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
+                                                        onclick="url(" + str(position_counter) + ");"):
                                             with template.h2():
                                                 template(
                                                     entry['title'])
@@ -425,21 +399,6 @@ for combination in combination_data:
 
             with template.script():
 
-                template("$.cookie('clicked', \"no\");")
-                template("var changed = false;")
-                template("var checkCookie = function() {")
-                template("return function() {")
-                template("if ($.cookie(\"clicked\") == \"yes\" && changed == false) {")
-                template("document.getElementById(\"submitCode\").disabled = false;")
-                template("document.getElementById(\"submitCode\").style.display = \"block\";")
-                template("changed = true;")
-                template("}")
-                template("};")
-                template("}();")
-
-                template("window.setInterval(checkCookie, 100);")
-
-
                 template("var mouse_movement = [];")
                 template("var basic = [];")
                 template("var user_action = [];")
@@ -448,10 +407,6 @@ for combination in combination_data:
                 template("var exp_id = random_exp_id();")
                 template("var window_width = document.body.scrollWidth;")
                 template("var window_height = document.body.scrollHeight;")
-
-                template("    var time = new Date().toLocaleString('en-US');")
-                template("    var basic = [exp_id, window_width, window_height, time];")
-                template("    $.cookie('basic', JSON.stringify(basic));")
 
                 template("$.get(\"https://ipinfo.io\", function(response) {")
                 template("    user_id =response.ip;")
@@ -462,11 +417,10 @@ for combination in combination_data:
                 template("    upload_view(document.documentElement.scrollTop);")
                 template("}, 3000);")
 
-
                 template("function url(link_id) {")
                 template("    document.getElementById(\"submitCode\").disabled = false;")
                 template("    document.getElementById(\"submitCode\").style.display = \"block\";")
-                template("    //upload_action(\"click link\",link_id);")
+                template("    upload_action(\"click link\",link_id);")
                 template("}")
 
                 template("function ad() {")
@@ -479,7 +433,7 @@ for combination in combination_data:
                 template("        basic.push(end_time);")
                 template("        $.cookie('basic', JSON.stringify(basic));")
                 template("        // $.cookie('mouse_movement', JSON.stringify(mouse_movement));")
-                template("        // $.cookie('user_action', JSON.stringify(user_action));")
+                template("        $.cookie('user_action', JSON.stringify(user_action));")
                 template("        $.cookie('user_view', JSON.stringify(user_view));")
                 template("        window.location.href='post_question.php';")
                 template("    }")
@@ -535,10 +489,10 @@ for combination in combination_data:
                 template("//     mouse_movement.push(position);")
                 template("// }")
 
-                template("//function upload_action(type,link_id) {")
-                template("//    var time = new Date().toLocaleString('en-US');")
-                template("//   var action = [link_id, type, time];")
-                template("//  user_action.push(action);")
+                template("function upload_action(type,link_id) {")
+                template("    var time = new Date().toLocaleString('en-US');")
+                template("    var action = [link_id, type, time];")
+                template("    user_action.push(action);")
                 template("}")
 
                 template("function upload_view(view) {")

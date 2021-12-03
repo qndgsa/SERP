@@ -12,25 +12,26 @@ $db_connection = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
 $expire = time() + 60 * 60 * 24; //1day
 
 if (!empty($_COOKIE["user"])){
-    if(isset($_COOKIE['knowledge'])&&$_COOKIE['knowledge'] == "yes"){
-        setcookie("knowledge", "");
-        $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $len = strlen($str)-1;
-        $random_str = '';
-        for ($i=0;$i<8;$i++) {
-            $num=mt_rand(0,$len);
-            $random_str .= $str[$num];
-        }
-
-        $zero = 0;
-        $time = "N/A";
-        $feedback = "knowledge exist";
-
-        $insert_basic = $db_connection->prepare("INSERT INTO serp.exp_data (exp_id, user_id, test_url, window_width, window_height, query, sequence, start, end, feedback)VALUES(?,?,?,?,?,?,?,?,?,?);");
-        $insert_basic->bind_param("ssssssssss", $random_str, $_COOKIE["user"], $_COOKIE["url"], $zero, $zero,$_COOKIE["query"],$_COOKIE["sequence"], $time, $time, $feedback);
-        $insert_basic->execute();
-
-    } else if (isset($_COOKIE['basic'])&&isset($_COOKIE['user_action'])&&isset($_COOKIE['user_view'])&&isset($_POST['feedback'])){
+//    if(isset($_COOKIE['knowledge'])&&$_COOKIE['knowledge'] == "yes"){
+//        setcookie("knowledge", "");
+//        $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+//        $len = strlen($str)-1;
+//        $random_str = '';
+//        for ($i=0;$i<8;$i++) {
+//            $num=mt_rand(0,$len);
+//            $random_str .= $str[$num];
+//        }
+//
+//        $zero = 0;
+//        $time = "N/A";
+//        $feedback = "knowledge exist";
+//
+//        $insert_basic = $db_connection->prepare("INSERT INTO serp.exp_data (exp_id, user_id, test_url, window_width, window_height, query, sequence, start, end, feedback)VALUES(?,?,?,?,?,?,?,?,?,?);");
+//        $insert_basic->bind_param("ssssssssss", $random_str, $_COOKIE["user"], $_COOKIE["url"], $zero, $zero,$_COOKIE["query"],$_COOKIE["sequence"], $time, $time, $feedback);
+//        $insert_basic->execute();
+//
+//    } else
+    if (isset($_COOKIE['basic'])&&isset($_COOKIE['user_action'])&&isset($_COOKIE['user_view'])&&isset($_POST['feedback'])&&isset($_COOKIE['knowledge'])){
         setcookie("knowledge", "");
         $basic = json_decode($_COOKIE['basic']);
 //        $mouse_movement = json_decode($_COOKIE['mouse_movement']);
@@ -43,8 +44,8 @@ if (!empty($_COOKIE["user"])){
 //            $insert->execute();
 //        }
 
-        $insert_basic = $db_connection->prepare("INSERT INTO serp.exp_data (exp_id, user_id, test_url, window_width, window_height, query, sequence, start, end, feedback)VALUES(?,?,?,?,?,?,?,?,?,?);");
-        $insert_basic->bind_param("ssssssssss", $basic[0], $_COOKIE["user"], $_COOKIE["url"], $basic[1], $basic[2],$_COOKIE["query"],$_COOKIE["sequence"], $basic[3], $basic[4], $_POST['feedback']);
+        $insert_basic = $db_connection->prepare("INSERT INTO serp.exp_data (exp_id, user_id, test_url, window_width, window_height, query, sequence, start, end, knowledge, feedback)VALUES(?,?,?,?,?,?,?,?,?,?,?);");
+        $insert_basic->bind_param("sssssssssss", $basic[0], $_COOKIE["user"], $_COOKIE["url"], $basic[1], $basic[2],$_COOKIE["query"],$_COOKIE["sequence"], $basic[3], $basic[4], $_COOKIE['knowledge'], $_POST['feedback']);
         $insert_basic->execute();
 
         $update_used = $db_connection->prepare("UPDATE serp.config_data SET answered = answered + 1 WHERE URL = ?");
@@ -76,8 +77,6 @@ if (!empty($_COOKIE["user"])){
 
         setcookie("basic", '');
         //setcookie("mouse_movement", '');
-        setcookie("user_action", '');
-        setcookie("user_view", '');
     }else{
         echo $_COOKIE['basic'];
         echo "<br>";
@@ -94,8 +93,6 @@ if (!empty($_COOKIE["user"])){
         setcookie("topic1", "");
         setcookie("basic", '');
         setcookie("mouse_movement", '');
-        setcookie("user_action", '');
-        setcookie("user_view", '');
 
 //        echo "
 //        <script>
@@ -103,6 +100,8 @@ if (!empty($_COOKIE["user"])){
 //            window.location.href='index.html';
 //        </script>";
     }
+    setcookie("user_action", '');
+    setcookie("user_view", '');
 
     $update_round_robin = $db_connection->prepare("UPDATE serp.round_robin SET done = 1 WHERE amazon_id = ? AND URL = ?");
     $update_round_robin ->bind_param("ss",$_COOKIE['user'], $_COOKIE['url']);

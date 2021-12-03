@@ -47,10 +47,12 @@ if (isset($_POST['ID'])) {
         $insert->bind_param("s", $_POST["ID"]);
         $insert->execute();
 
-        $find_entry = mysqli_query($db_connection,"select entry_file from serp.config_query_data;");
-
-        while($entry = mysqli_fetch_row($find_entry)) {
-            $q = "SELECT URL,query,sequence,topic0, topic1 FROM serp.config_data WHERE entry_file =\"".$entry[0]."\" AND answered < 3 ORDER BY used ASC limit 1;";
+//        $find_entry = mysqli_query($db_connection,"select entry_file from serp.config_query_data;");
+//
+//        while($entry = mysqli_fetch_row($find_entry)) {
+//            $q = "SELECT URL,query,sequence,topic0, topic1 FROM serp.config_data WHERE entry_file =\"".$entry[0]."\" AND answered < 3 ORDER BY used ASC limit 1;";
+            $q = "SELECT URL,query,sequence,topic0, topic1 FROM serp.config_data WHERE answered < 3 ORDER BY used ASC limit 1;";
+//            $html_list = mysqli_query($db_connection, $q);
             $html_list = mysqli_query($db_connection, $q);
             while($row = mysqli_fetch_row($html_list)){
                 $url = $row[0];
@@ -67,7 +69,7 @@ if (isset($_POST['ID'])) {
                 $insert->bind_param("ssssss", $amazon_id,$url, $query, $sequence, $topic0, $topic1);
                 $insert->execute();
             }
-        }
+//        }
 
         setcookie("user", $amazon_id, $expire);
         header("Location: start.php");

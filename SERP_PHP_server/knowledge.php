@@ -82,7 +82,7 @@
 
     function yes() {
         $.cookie('knowledge', "yes");
-        window.location.href = 'experiment_redirect.php';
+        window.location.href = $.cookie('url');
     }
 </script>
 <br>
