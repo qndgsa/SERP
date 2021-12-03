@@ -52,6 +52,14 @@ if (!empty($_COOKIE["user"])){
         $update_used->bind_param("s", $_COOKIE["url"]);
         $update_used->execute();
 
+        $t = date("m/d/Y, h:i:s A");
+        $i1 = 0;
+        $str1 = "close page";
+
+        $insert_action = $db_connection->prepare("INSERT INTO serp.user_action(exp_id, user_id, action, link_id, date)VALUES(?,?,?,?,?)");
+        $insert_action->bind_param("sssss", $basic[0], $_COOKIE["user"], $str1, $i1,  $t);
+        $insert_action->execute();
+
 
         foreach ($user_action as $action){
         //            if ($action[1] == "close_page"){

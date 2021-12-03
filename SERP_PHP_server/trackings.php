@@ -6,19 +6,19 @@ error_reporting(E_ALL);
 
 //if (isset($_COOKIE['basic'])){
     //$basic = json_decode($_COOKIE['basic']);
-if(isset($_COOKIE['addition'])){
-    $array =json_decode($_COOKIE['addition']);
+if(isset($_COOKIE['user_action'])){
+    $array =json_decode($_COOKIE['user_action']);
     $pos = $_GET['pos'];
     $t = date("m/d/Y, h:i:s A");
-    $action = 'click link (new tab)';
-    $arr = [$pos, $t, $action];
+    $action = 'click link';
+    $arr = [$pos, $action, $t];
     array_push($array,$arr);
     setcookie("user_action",  json_encode($array));
 }else{
     $pos = $_GET['pos'];
     $t = date("m/d/Y, h:i:s A");
-    $action = 'click link (new tab)';
-    $tamp = [$pos,$t,$action];
+    $action = 'click link';
+    $tamp = [$pos, $action, $t];
     $array = [$tamp];
     setcookie("user_action",  json_encode($array));
 }
