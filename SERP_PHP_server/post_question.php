@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="textbox">
                             <i class="fas fa-lock"></i>
-                            <select id="feedback" name="feedback">
+                            <select id="feedback" name="feedback" REQUIRED>
                                 <option value="" disabled selected>Please select your answer</option>
                                 <option value="N">No- According to the information I read it is not effective</option>
                                 <option value="Y">Yes - According to the information I read it is effective</option>

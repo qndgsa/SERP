@@ -76,6 +76,7 @@ cursor.execute("truncate config_data")
 # them with other category in E,I,U order until run out all entries.
 print(combination_data)
 fill = False
+
 # when set it as True, if the length of sequence is lower than total number of the entries, program will fill up
 # the rest of entries in the html file
 
@@ -390,7 +391,7 @@ for combination in combination_data:
                                                         template(
                                                             "(" + A['rating comment'] + ")")
                                 else:
-                                    if ad_loaded:
+                                    if ad:
                                         with template.div(klass="searchresult"):
                                             with template.p():
                                                 template(

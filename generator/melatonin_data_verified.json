@@ -1,0 +1,95 @@
+{
+"query": "Does Melatonin  treat jetlag",
+"topic": ["jetlag","Melatonin"],
+"effective": [
+{
+"title": "Jet lag disorder - Diagnosis and treatment - Mayo Clinic",
+"URL": "https://www.mayoclinic.org/diseases-conditions/jet-lag/diagnosis-treatment/drc-20374031",
+"description": "Melatonin. As a jet lag remedy and sleep aid, melatonin has been widely studied, and it's now a commonly accepted part of effective jet lag treatment. The latest research seems to show that melatonin aids sleep during times when you wouldn't normally be resting, making it beneficial for people with jet lag.",
+"id": "1",
+"query":"melatonin effective jetlag"
+},
+{
+"title": "Melatonin for the prevention and treatment of jet lag - PubMed",
+"URL": "https://pubmed.ncbi.nlm.nih.gov/12076414/",
+"description": "by A Herxheimer · 2002 · Cited by 590 — Melatonin is remarkably effective in preventing or reducing jet-lag, and occasional short-term use appears to be safe. It should be recommended to",
+"id": "2",
+"query":"melatonin effective jetlag"
+},
+{
+"title": "Melatonin for jet lag - Sleep - Harvard Health",
+"URL": "https://www.health.harvard.edu/sleep/melatonin-for-jet-lag",
+"description": "6 Aug 2015 — After the westward return leg, early morning awakening would be more typical. Melatonin has been more effective at treating eastward jet lag, ...",
+"id": "3",
+"query":"melatonin effective jetlag"
+},
+{
+"title": "What doctors say about using melatonin as a jet lag cure",
+"URL": "https://www.cnbc.com/2020/01/03/does-melatonin-work-is-it-safe-for-jet-lag.html",
+"description": "3 Jan 2020 — If used correctly, melatonin is an effective and safe treatment for jet lag, says Dr. Sak. How much melatonin to take — and when? In most ...",
+"id": "4",
+"query":"melatonin effective jetlag"
+},
+{
+"title": "Melatonin for jet lag - Type, dose & timing | Timeshifter®",
+"URL": "https://www.timeshifter.com/how-to-timeshift/melatonin-for-jet-lag-type-dose-timing",
+"description": "17 Sep 2020 — Taking melatonin will do two things: First, it will help shift the timing of the body clock to help you overcome jet lag more quickly.",
+"id": "5",
+"query":"melatonin effective jetlag"
+}
+],
+"inconclusive": [
+{
+"title": "Melatonin should not be offered by NHS to treat jet lag – review",
+"URL": "https://www.theguardian.com/society/2020/jan/14/melatonin-should-not-be-made-available-on-nhs-to-treat-jet-lag",
+"description": "14 Jan 2020 — Most of the clinical trials on melatonin for jet lag, the team noted, were published between 1986 and 2005, and many were small. But as the ...",
+"id":"6",
+"query":"melatonin ineffective jetlag"
+},
+{
+"title": "How to Cope With Jet Lag - WebMD",
+"URL": "https://www.webmd.com/sleep-disorders/features/jet-lag-remedies",
+"description": "19 Jan 2010 — How to reduce or prevent sleepiness and other jet lag symptoms with ... melatonin, or prescription medication that can help with jet lag ...",
+"query":"melatonin jet lag medication",
+"id":"7"
+},
+{
+"title": "Melatonin for jet lag shouldn't be available | EurekAlert!",
+"URL": "https://www.eurekalert.org/news-releases/778783",
+"description": "13 Jan 2020 — But as melatonin has been licensed for the treatment of jet lag within the ... Dr Cave accepts that non-drug treatments for jet lag, ...",
+"id":"8",
+"query":"melatonin does not help jet lag"
+},
+{
+"title": "Jet Lag",
+"URL": "https://ajp.psychiatryonline.org/doi/pdf/10.1176/ajp.156.9.1392",
+"description": "by RL Spitzer · 1999 · Cited by 190 — high on each day of the study. Conclusions: The use of melatonin for preventing jet lag needs further study. (Am J Psychiatry 1999; 156:1392–1396).",
+"id":"9",
+"query":"melatonin jet lag further study"
+}
+],
+"ineffective": [
+{
+"title": "No Evidence That Melatonin Is Effective In Treating Jet Lag",
+"URL": "https://www.sciencedaily.com/releases/2006/02/060210090643.htm",
+"description": "10 Feb 2006 — There is no evidence that melatonin is effective in treating secondary sleep disorders or preventing jet lag, finds a study published online ...",
+"id":"10",
+"query":"melatonin ineffective jetlag"
+},
+{
+"title": "Melatonin may have no effect on sleep patterns | New Scientist",
+"URL": "https://www.newscientist.com/article/mg18925394-900-melatonin-may-have-no-effect-on-sleep-patterns/",
+"description": "15 Feb 2006 — NEXT time you jet off somewhere exotic, leave those “anti-jetlag” melatonin pills at home. They're useless, concludes a review of melatonin ...",
+"id":"11",
+"query":"jet lag melatonin useless"
+},
+{
+"title": "Melatonin does not counteract jet lag.",
+"URL": "https://www.jetlag.co.nz/melatonin.html",
+"description": "Latest Research says using Melatonin for jet lag doesn't counter jet lag. There have been conflicting reports on the side affects of melatonin and now there is strong doubts about Melatonin as a jet lag remedy. Timing of the dose has been found to be crucial, and incorrect use can result in jet lag being made worse rather than better.",
+"id":"12",
+"query":"melatonin does not help jet lag",
+"se":"bing"
+}
+]
+}
