@@ -4,6 +4,8 @@ import sys
 from random import choice
 from airium import Airium
 
+
+
 # data config
 # db = mysql.connector.connect(
 #     host="localhost",
@@ -19,9 +21,19 @@ db = mysql.connector.connect(
     database="serp"
 ) # database connection
 
-SERVER_URL = "http://cs.virginia.edu/~zw3hk/SERP/"
+#SERVER_URL = SERVER_URL+""
 config_id = 0  # config id in the config sequence data table
 query_id = 0  # query id in the config query data
+
+#db = mysql.connector.connect(
+#    host="localhost",
+#    user="root",
+#    passwd="anat",
+#    database="serp"
+#)  # database connection
+
+SERVER_URL = "http://cs.virginia.edu/~zw3hk/SERP/"
+#SERVER_URL = "http://localhost/SERP/"
 
 GENERATE_ALL = True
 # if this variable set to true, the generator will loop over two database to generate all
@@ -91,7 +103,7 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
 #            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                            onclick="url(" + str(position_counter) + ");"):
             with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                                ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter),
+                                ping=SERVER_URL+"trackings.php?pos=" + str(position_counter),
                                 onclick="url(" + str(position_counter) + ");"):
 
                 with template.h2():
@@ -111,7 +123,7 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
                     entry['URL'])
 #            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                            onclick="url(" + str(position_counter) + ");"):
-            with template.a(href=entry['URL'], ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter)
+            with template.a(href=entry['URL'], ping=SERVER_URL+"trackings.php?pos=" + str(position_counter)
                             ,target="_blank", style="text-decoration: none;",
                             onclick="url(" + str(position_counter) + ");"):
                 with template.h2():
@@ -133,7 +145,7 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
 #                            onclick="url(" + str(position_counter) + ");"):
 
             with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                            ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter),
+                            ping=SERVER_URL+"trackings.php?pos=" + str(position_counter),
                             onclick="url(" + str(position_counter) + ");"):
                 with template.h2():
                     template(
@@ -260,7 +272,7 @@ for combination in combination_data:
                         position_counter = 1
                         for item in sequence:
                             if item == 'Y':
-                                if E_counter >= len(effective):
+                                if len(effective) == 0:
                                     if FILL_THE_EMPTY != False and FILL_THE_EMPTY != False:
                                         E_counter, I_counter, U_counter = entry_exception(E_counter, I_counter, U_counter, "Y",
                                                                                       position_counter)
@@ -273,7 +285,7 @@ for combination in combination_data:
 #                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                                                        onclick="url(" + str(position_counter) + ");"):
                                         with template.a(href=entry['URL'],
-                                                        ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter)
+                                                        ping=SERVER_URL+"trackings.php?pos=" + str(position_counter)
                                                     , target="_blank", style="text-decoration: none;",
                                                             onclick="url(" + str(position_counter) + ");"):
                                             with template.h2():
@@ -287,7 +299,7 @@ for combination in combination_data:
                                 position_counter += 1
 
                             elif item == 'N':
-                                if I_counter >= len(ineffective)and FILL_THE_EMPTY != False:
+                                if len(ineffective) == 0 and FILL_THE_EMPTY != False:
                                         E_counter, I_counter, U_counter = entry_exception(E_counter, I_counter, U_counter, "N",
                                                                                       position_counter)
                                 else:
@@ -299,7 +311,7 @@ for combination in combination_data:
 #                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                                                        onclick="url(" + str(position_counter) + ");"):
                                         with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                                                        ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(position_counter),
+                                                        ping=SERVER_URL+"trackings.php?pos=" + str(position_counter),
                                                         onclick="url(" + str(position_counter) + ");"):
                                             with template.h2():
                                                 template(
@@ -313,7 +325,7 @@ for combination in combination_data:
 
                             elif item == 'M' \
                                          '':
-                                if U_counter >= len(unknown) and FILL_THE_EMPTY != False:
+                                if len(unknown) == 0 and FILL_THE_EMPTY != False:
                                         E_counter, I_counter, U_counter = entry_exception(E_counter, I_counter, U_counter, "M",
                                                                                       position_counter)
                                 else:
@@ -326,7 +338,7 @@ for combination in combination_data:
 #                                                        onclick="url(" + str(position_counter) + ");"):
                                         with template.a(href=entry['URL'], target="_blank",
                                                             style="text-decoration: none;",
-                                                            ping="http://cs.virginia.edu/~zw3hk/SERP/trackings.php?pos=" + str(
+                                                            ping=SERVER_URL+"trackings.php?pos=" + str(
                                                                 position_counter),
                                                             onclick="url(" + str(position_counter) + ");"):
 
