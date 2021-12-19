@@ -5,7 +5,6 @@ from random import choice
 from airium import Airium
 
 
-
 # data config
 # db = mysql.connector.connect(
 #     host="localhost",
@@ -14,32 +13,35 @@ from airium import Airium
 #     database="serp"
 # )  # database connection
 
-db = mysql.connector.connect(
-    host="hcdm3.cs.virginia.edu",
-    user="zw3hk",
-    passwd="Fall2021!!",
-    database="serp"
-) # database connection
+LOCAL = True
 
-#SERVER_URL = SERVER_URL+""
+if LOCAL:
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        passwd="anat",
+        database="serp"
+    )  # database connection
+    SERVER_URL = "http://localhost/SERP/"
+else:
+    db = mysql.connector.connect(
+        host="hcdm3.cs.virginia.edu",
+        user="zw3hk",
+        passwd="Fall2021!!",
+        database="serp"
+    ) # database connection
+    SERVER_URL = "http://cs.virginia.edu/~zw3hk/SERP/"
+
+
 config_id = 0  # config id in the config sequence data table
 query_id = 0  # query id in the config query data
 
-#db = mysql.connector.connect(
-#    host="localhost",
-#    user="root",
-#    passwd="anat",
-#    database="serp"
-#)  # database connection
-
-SERVER_URL = "http://cs.virginia.edu/~zw3hk/SERP/"
-#SERVER_URL = "http://localhost/SERP/"
 
 GENERATE_ALL = True
 # if this variable set to true, the generator will loop over two database to generate all
 # possible configure combination
 
-LOAD_CONFIG = True
+LOAD_CONFIG = False
 
 COPIES = 3
 
@@ -258,7 +260,7 @@ for combination in combination_data:
                     #             template(
                     #                 "<li>Tools</li>")
                 template(
-                    " <button class=\"btn sunny-morning-gradient\" id=\"submitCode\"  disabled onclick=\"next();\" style=\"display: none; position:fixed; top:20px; left:80%;\" >Answer Question</button>")
+                    " <button class=\"btn sunny-morning-gradient\" id=\"submitCode\"  disabled onclick=\"next();\" style=\"display: none; position:fixed; top:20px; left:80%;\" >Answer Survey</button>")
                 # search result part
                 with template.div(id="searchresultsarea"):
                     with template.p(id="searchresultsnumber"):
@@ -286,8 +288,8 @@ for combination in combination_data:
 #                                                        onclick="url(" + str(position_counter) + ");"):
                                         with template.a(href=entry['URL'],
                                                         ping=SERVER_URL+"trackings.php?pos=" + str(position_counter)
-                                                    , target="_blank", style="text-decoration: none;",
-                                                            onclick="url(" + str(position_counter) + ");"):
+                                                    , target="_blank", style="text-decoration: none;"):
+                                                            #,onclick="url(" + str(position_counter) + ");"):
                                             with template.h2():
                                                 template(
                                                     entry['title'])
@@ -435,207 +437,241 @@ for combination in combination_data:
                                 E_counter, I_counter, U_counter = entry_exception(E_counter, I_counter, U_counter, "",
                                                                                   position_counter)
                                 position_counter += 1
+                with template.script():
 
-            with template.script():
+                    template("$.cookie('clicked', \"no\", { expires : 1 });")
+                    template("var changed = false;")
+                    template("var exp_id = random_exp_id();")
 
-                template("$.cookie('clicked', \"no\");")
-                template("var changed = false;")
-                template("var checkCookie = function() {")
-                template("  return function() {")
-                template("      if ($.cookie(\"clicked\") == \"yes\" && changed == false) {")
-                template("          document.getElementById(\"submitCode\").disabled = false;")
-                template("          document.getElementById(\"submitCode\").style.display = \"block\";")
-                template("          changed = true;")
-                template("      }")
-                template("  };")
-                template("}();")
+                    template("	var update_ping_time = function() {")
+                    template("		const now = new Date();")
+                    template("        const time = Math.round(now.getTime() / 1000) ;")
+                    template("")
+                    template("		var a_list = document.getElementsByTagName('a');")
+                    template("		var len = a_list.length;")
+                    template("		for(let i = 0; i < len; ++i){")
+                    template("			var a = a_list[i];")
+                    template("			if(a.ping){")
+                    template("				var ping_val = a.ping;")
+                    template("				var index = ping_val.indexOf('t=');")
+                    template("				if(index< 0){")
+                    template("					var user = $.cookie('user');")
+                    template("					ping_val += '&user='+user+'&exp='+exp_id+'&t='+time;")
+                    template("				}else{")
+                    template("					ping_val = ping_val.substring(0,index+2)+time;")
+                    template("				}")
+                    template("				a.ping = ping_val;")
+                    template("			}")
+                    template("		}")
+                    template("	}")
+                    template("update_ping_time();")
 
-                template("window.setInterval(checkCookie, 100);")
+                    template("var checkCookie = function() {")
+                    template("  return function() {")
+                    template("      if ($.cookie(\"clicked\") == \"yes\" && changed == false) {")
+                    template("          document.getElementById(\"submitCode\").disabled = false;")
+                    template("          document.getElementById(\"submitCode\").style.display = \"block\";")
+                    template("          changed = true;")
+                    template("      }")
+                    template("  };")
+                    template("}();")
+
+                    template("window.setInterval(checkCookie, 100);")
+                    template("window.setInterval(update_ping_time, 1000);")
+
+                    template("var mouse_movement = [];")
+                    template("var basic = [];")
+                    template("var user_action = [];")
+                    template("var user_view = [];")
 
 
-                template("var mouse_movement = [];")
-                template("var basic = [];")
-                template("var user_action = [];")
-                template("var user_view = [];")
+                    template("var window_width = document.body.scrollWidth;")
+                    template("var window_height = document.body.scrollHeight;")
 
-                template("var exp_id = random_exp_id();")
-                template("var window_width = document.body.scrollWidth;")
-                template("var window_height = document.body.scrollHeight;")
+                    #                template("    var time = new Date().toLocaleString('en-US');")
+                    template("const now = new Date();")
+                    template("const time = Math.round(now.getTime() / 1000) ;")
+                    template("var basic = [exp_id, window_width, window_height, time];")
+                    template("$.cookie('basic', JSON.stringify(basic), { expires : 1 });")
 
-                template("    var time = new Date().toLocaleString('en-US');")
-                template("    var basic = [exp_id, window_width, window_height, time];")
-                template("    $.cookie('basic', JSON.stringify(basic));")
+                    template("$.get(\"https://ipinfo.io\", function(response) {")
+                    template("    user_id =response.ip;")
+                    template("    upload_basic();")
+                    template("}, \"json\")")
 
-                template("$.get(\"https://ipinfo.io\", function(response) {")
-                template("    user_id =response.ip;")
-                template("    upload_basic();")
-                template("}, \"json\")")
+                    #                template("window.setInterval(function () {")
+                    #                template("    upload_view(document.documentElement.scrollTop);")
+                    #                template("}, 3000);")
 
-                template("window.setInterval(function () {")
-                template("    upload_view(document.documentElement.scrollTop);")
-                template("}, 3000);")
+                    template("function url(link_id) {")
+                    template("    document.getElementById(\"submitCode\").disabled = false;")
+                    template("    document.getElementById(\"submitCode\").style.display = \"block\";")
+                    template("    //upload_action(\"click link\",link_id);")
+                    template("}")
 
+                    template("function ad() {")
+                    template("    upload_action(\"click ad\",0);")
+                    template("}")
 
-                template("function url(link_id) {")
-                template("    document.getElementById(\"submitCode\").disabled = false;")
-                template("    document.getElementById(\"submitCode\").style.display = \"block\";")
-                template("    //upload_action(\"click link\",link_id);")
-                template("}")
+                    template("function next() {")
+                    template("        //upload_action(\"close_page\", 0);")
+                    #               template("        var end_time = new Date().toLocaleString('en-US');")
+                    template("    const now = new Date();")
+                    template("    const end_time = Math.round(now.getTime() / 1000) ;")
+                    template("    $.cookie('close_page',  JSON.stringify(end_time), { expires : 1 });")
+                    template("    //var action = [\"close_page\", 0, end_time];")
+                    template("    //user_action.push(action);")
 
-                template("function ad() {")
-                template("    upload_action(\"click ad\",0);")
-                template("}")
+                    template("        //basic.push(end_time);")
+                    template("        //$.cookie('basic', JSON.stringify(basic), { expires : 1 });")
+                    template("        // $.cookie('mouse_movement', JSON.stringify(mouse_movement));")
+                    template("        // $.cookie('user_action', JSON.stringify(user_action));")
+                    #                template("        $.cookie('user_view', JSON.stringify(user_view), { expires : 1 });")
+                    template("        window.location.href='post_question.php';")
+                    template("    }")
 
-                template("function next() {")
-                template("        //upload_action(\"close_page\", 0);")
-                template("        var end_time = new Date().toLocaleString('en-US');")
-                template("        basic.push(end_time);")
-                template("        $.cookie('basic', JSON.stringify(basic));")
-                template("        // $.cookie('mouse_movement', JSON.stringify(mouse_movement));")
-                template("        // $.cookie('user_action', JSON.stringify(user_action));")
-                template("        $.cookie('user_view', JSON.stringify(user_view));")
-                template("        window.location.href='post_question.php';")
-                template("    }")
+                    template("mouse_wheel();")
+                    template("function mouse_wheel() {")
+                    template("    var scrollFunc = function (e) {")
+                    template("        var e = window.event || e;")
+                    template("        if (e.wheelDelta) {")
+                    template("            if (e.wheelDelta > 0) {")
+                    template("                upload_action(\"scroll up\",0)")
+                    template("            }")
+                    template("            if (e.wheelDelta < 0) {")
+                    template("                upload_action(\"scroll down\",0)")
+                    template("            }")
+                    template("        } else if (e.detail) {")
+                    template("            if (e.detail> 0) {")
+                    template("               upload_action(\"scroll up\",0)")
+                    template("            }")
+                    template("            if (e.detail< 0) {")
+                    template("                upload_action(\"scroll down\",0)")
+                    template("            }")
+                    template("        }")
+                    template("    };")
+                    template("    if (document.addEventListener) {")
+                    template("        document.addEventListener('DOMMouseScroll', scrollFunc, false);")
+                    template("    }")
+                    template("    window.onmousewheel = document.onmousewheel = scrollFunc;")
+                    template("}")
 
-                template("mouse_wheel();")
-                template("function mouse_wheel() {")
-                template("    var scrollFunc = function (e) {")
-                template("        var e = window.event || e;")
-                template("        if (e.wheelDelta) {")
-                template("            if (e.wheelDelta > 0) {")
-                template("                upload_action(\"scroll up\",0)")
-                template("            }")
-                template("            if (e.wheelDelta < 0) {")
-                template("                upload_action(\"scroll down\",0)")
-                template("            }")
-                template("        } else if (e.detail) {")
-                template("            if (e.detail> 0) {")
-                template("               upload_action(\"scroll up\",0)")
-                template("            }")
-                template("            if (e.detail< 0) {")
-                template("                upload_action(\"scroll down\",0)")
-                template("            }")
-                template("        }")
-                template("    };")
-                template("    if (document.addEventListener) {")
-                template("        document.addEventListener('DOMMouseScroll', scrollFunc, false);")
-                template("    }")
-                template("    window.onmousewheel = document.onmousewheel = scrollFunc;")
-                template("}")
+                    template("function mouse_position(e, obj) {")
+                    template("    var e = window.event || e;")
+                    template("    var position = [e.clientX, e.clientY];")
+                    template("    upload_position(position[0],position[1]);")
+                    template("}")
 
-                template("function mouse_position(e, obj) {")
-                template("    var e = window.event || e;")
-                template("    var position = [e.clientX, e.clientY];")
-                template("    upload_position(position[0],position[1]);")
-                template("}")
+                    template("window.onload = function() {")
+                    #                template("    document.onmousemove = function(event) {mouse_position(event, this);}")
+                    template("}")
 
-                template("window.onload = function() {")
-                template("    document.onmousemove = function(event) {mouse_position(event, this);}")
-                template("}")
+                    #             template("window.onbeforeunload = function (event) {")
+                    #             template("    return \"Hey, you're leaving the site. Bye!\";")
+                    #             template("}")
 
-                #             template("window.onbeforeunload = function (event) {")
-                #             template("    return \"Hey, you're leaving the site. Bye!\";")
-                #             template("}")
+                    template("function upload_basic() {")
+                    #                template("    var time = new Date().toLocaleString('en-US');")
+                    template("    const now = new Date();")
+                    template("    const time = Math.round(now.getTime() / 1000) ;")
+                    template("    basic = [exp_id, window_width, window_height, time];")
+                    template("}")
 
-                template("function upload_basic() {")
-                template("    var time = new Date().toLocaleString('en-US');")
-                template("    basic = [exp_id, window_width, window_height, time];")
-                template("}")
+                    template("//function upload_position(x,y) {")
+                    template("//     var time = new Date().toLocaleString();")
+                    template("//     var position = [x,y,time];")
+                    template("//     mouse_movement.push(position);")
+                    template("// }")
 
-                template("//function upload_position(x,y) {")
-                template("//     var time = new Date().toLocaleString();")
-                template("//     var position = [x,y,time];")
-                template("//     mouse_movement.push(position);")
-                template("// }")
+                    template("//function upload_action(type,link_id) {")
+                    template("//    var time = new Date().toLocaleString('en-US');")
+                    template("//   var action = [link_id, type, time];")
+                    template("//  user_action.push(action);")
+                    template("//}")
 
-                template("//function upload_action(type,link_id) {")
-                template("//    var time = new Date().toLocaleString('en-US');")
-                template("//   var action = [link_id, type, time];")
-                template("//  user_action.push(action);")
-                template("//}")
+                    template("function upload_view(view) {")
+                    template("    var time = new Date().toLocaleString('en-US');")
+                    template("    var v = [view, time];")
+                    template("    user_view.push(v);")
+                    template("}")
 
-                template("function upload_view(view) {")
-                template("    var time = new Date().toLocaleString('en-US');")
-                template("    var v = [view, time];")
-                template("    user_view.push(v);")
-                template("}")
+                    template("function random_exp_id() {")
+                    template("    var t = \"ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678\",")
+                    template("    a = t.length,")
+                    template("    id = \"\";")
+                    template("    for (i = 0; i < 8; i++) id += t.charAt(Math.floor(Math.random() * a));")
+                    template("    return id")
+                    template("}")
 
-                template("function random_exp_id() {")
-                template("    var t = \"ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678\",")
-                template("    a = t.length,")
-                template("    id = \"\";")
-                template("    for (i = 0; i < 8; i++) id += t.charAt(Math.floor(Math.random() * a));")
-                template("    return id")
-                template("}")
+                    # #related
+                    # with template.div(id="relatedsearches"):
+                    #     with template.h3():
+                    #         template(
+                    #             "Searches related to" + ad["query"])
+                    #     with template.div(klass="relatedlists"):
+                    #         with template.ul(id="relatedleft"):
+                    #                 template(
+                    #                     "<li>a</li>")
+                    #                 template(
+                    #                     "<li>b</li>")
+                    #                 template(
+                    #                     "<li>c</li>")
+                    #                 template(
+                    #                     "<li>d</li>")
+                    #         with template.ul(id="relatedright"):
+                    #                 template(
+                    #                     "<li>e</li>")
+                    #                 template(
+                    #                     "<li>f</li>")
+                    #                 template(
+                    #                     "<li>g</li>")
+                    #                 template(
+                    #                     "<li>h</li>")
+                    # #page list bar
+                    # with template.div(klass="pagebar"):
+                    #     with template.ul(klass="pagelist"):
+                    #         template(
+                    #             "<li class=\"pagelistprevious\">Previous</li>")
+                    #         template(
+                    #             "<li class=\"pagelistfirst\">1</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">2</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">3</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">4</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">5</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">6</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">7</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">8</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">9</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnumber\">10</li>")
+                    #         template(
+                    #             "<li class=\"pagelistnext\">Next</li>")
+                    # create footer
+                    # with template.div(id="footer"):
+                    #     with template.div(id="footerlocation"):
+                    #         with template.p():
+                    #             template("Somewhere")
+                    #         with template.p():
+                    #             template("- From your place (Location History) - Use precise location - Learn more")
+                    #
+                    #     with template.ul(id="footermenu"):
+                    #         template(
+                    #             "<li>Help</li>")
+                    #         template(
+                    #             "<li>Send feedback</li>")
+                    #         template(
+                    #             "<li>Privacy</li>")
+                    #         template(
+                    #             "<li>Terms</li>")
 
-                # #related
-                # with template.div(id="relatedsearches"):
-                #     with template.h3():
-                #         template(
-                #             "Searches related to" + ad["query"])
-                #     with template.div(klass="relatedlists"):
-                #         with template.ul(id="relatedleft"):
-                #                 template(
-                #                     "<li>a</li>")
-                #                 template(
-                #                     "<li>b</li>")
-                #                 template(
-                #                     "<li>c</li>")
-                #                 template(
-                #                     "<li>d</li>")
-                #         with template.ul(id="relatedright"):
-                #                 template(
-                #                     "<li>e</li>")
-                #                 template(
-                #                     "<li>f</li>")
-                #                 template(
-                #                     "<li>g</li>")
-                #                 template(
-                #                     "<li>h</li>")
-                # #page list bar
-                # with template.div(klass="pagebar"):
-                #     with template.ul(klass="pagelist"):
-                #         template(
-                #             "<li class=\"pagelistprevious\">Previous</li>")
-                #         template(
-                #             "<li class=\"pagelistfirst\">1</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">2</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">3</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">4</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">5</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">6</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">7</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">8</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">9</li>")
-                #         template(
-                #             "<li class=\"pagelistnumber\">10</li>")
-                #         template(
-                #             "<li class=\"pagelistnext\">Next</li>")
-                # create footer
-                # with template.div(id="footer"):
-                #     with template.div(id="footerlocation"):
-                #         with template.p():
-                #             template("Somewhere")
-                #         with template.p():
-                #             template("- From your place (Location History) - Use precise location - Learn more")
-                #
-                #     with template.ul(id="footermenu"):
-                #         template(
-                #             "<li>Help</li>")
-                #         template(
-                #             "<li>Send feedback</li>")
-                #         template(
-                #             "<li>Privacy</li>")
-                #         template(
-                #             "<li>Terms</li>")
 
         # load as html
         html = str(template)  # casting to string extracts the value
