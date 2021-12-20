@@ -13,7 +13,8 @@ from airium import Airium
 #     database="serp"
 # )  # database connection
 
-LOCAL = True
+LOCAL = False
+
 
 if LOCAL:
     db = mysql.connector.connect(
@@ -36,7 +37,7 @@ else:
 config_id = 0  # config id in the config sequence data table
 query_id = 0  # query id in the config query data
 
-
+UPDATE_CONFIG = False
 GENERATE_ALL = True
 # if this variable set to true, the generator will loop over two database to generate all
 # possible configure combination
@@ -83,7 +84,9 @@ else:
     query_data = cursor.fetchall()
     combination_data = [[query_data[0][0], sequence_data[0][0]]]
 
-cursor.execute("truncate config_data")
+if UPDATE_CONFIG:
+    cursor.execute("truncate config_data")
+
 # the sequence determine the display order of entries by category
 # "Y" = effective, "N" = ineffective, "M" = unknown, "A" = Ad
 # if gave number of the assigned category is more than entry_file's, program will replace
@@ -200,11 +203,11 @@ for combination in combination_data:
         except IOError:
             print("Could not load entry file:", entry_file)
             sys.exit(1)
-
-        cursor.execute(
-            "INSERT INTO serp.config_data (query, entry_file, sequence, URL, used, answered, topic0, topic1) VALUES ((%s), (%s), (%s), (%s), (%s), (%s), (%s), (%s))",
-            (query, entry_file, sequence, URL, 0, 0, topic[0], topic[1]))
-        db.commit()
+        if UPDATE_CONFIG:
+            cursor.execute(
+                "INSERT INTO serp.config_data (query, entry_file, sequence, URL, used, answered, topic0, topic1) VALUES ((%s), (%s), (%s), (%s), (%s), (%s), (%s), (%s))",
+                (query, entry_file, sequence, URL, 0, 0, topic[0], topic[1]))
+            db.commit()
 
         template('<!DOCTYPE html>')
         with template.html(lang="pl"):
@@ -260,7 +263,7 @@ for combination in combination_data:
                     #             template(
                     #                 "<li>Tools</li>")
                 template(
-                    " <button class=\"btn sunny-morning-gradient\" id=\"submitCode\"  disabled onclick=\"next();\" style=\"display: none; position:fixed; top:20px; left:80%;\" >Answer Survey</button>")
+                    " <button class=\"btn sunny-morning-gradient\" id=\"submitCode\"  onclick=\"next();\" style=\"position:fixed; top:20px; left:80%;\" >Answer Survey</button>")
                 # search result part
                 with template.div(id="searchresultsarea"):
                     with template.p(id="searchresultsnumber"):
@@ -514,20 +517,45 @@ for combination in combination_data:
                     template("}")
 
                     template("function next() {")
-                    template("        //upload_action(\"close_page\", 0);")
-                    #               template("        var end_time = new Date().toLocaleString('en-US');")
-                    template("    const now = new Date();")
-                    template("    const end_time = Math.round(now.getTime() / 1000) ;")
-                    template("    $.cookie('close_page',  JSON.stringify(end_time), { expires : 1 });")
-                    template("    //var action = [\"close_page\", 0, end_time];")
-                    template("    //user_action.push(action);")
 
-                    template("        //basic.push(end_time);")
-                    template("        //$.cookie('basic', JSON.stringify(basic), { expires : 1 });")
-                    template("        // $.cookie('mouse_movement', JSON.stringify(mouse_movement));")
-                    template("        // $.cookie('user_action', JSON.stringify(user_action));")
-                    #                template("        $.cookie('user_view', JSON.stringify(user_view), { expires : 1 });")
-                    template("        window.location.href='post_question.php';")
+                    template("	var user = $.cookie('user');")
+                    template("	if (!user) {")
+                    template("		alert('Please login with your Amazon User');")
+                    template("		window.location.href='"+SERVER_URL+"/index.html';")
+                    template("		return;")
+                    template("	}")
+                    template("	// Creating Our XMLHttpRequest object")
+                    template("	var xhr = new XMLHttpRequest();")
+                    template("	// Making our connection ")
+                    template("	var url = '"+SERVER_URL+"check_actions.php?user=' + user;")
+                    template("	xhr.open('GET', url, true);")
+                    template("	// function execute after request is successful")
+                    template("	xhr.onreadystatechange = function () {")
+                    template("		if (this.readyState == 4 && this.status == 200) {")
+                    template("			try {")
+                    template("				var num = parseInt(this.responseText);")
+                    template("				if (num <= 0) {")
+                    template("					alert('Please enter at least one hyperlink before answer.');")
+                    template("				} else {")
+                    template("					//upload_action('close_page', 0);")
+                    template("					const now = new Date();")
+                    template("					const end_time = Math.round(now.getTime() / 1000) ;")
+                    template("					$.cookie('close_page',  JSON.stringify(end_time), { expires : 1 });")
+                    template("					//var action = ['close_page', 0, end_time];")
+                    template("					//user_action.push(action);")
+                    template("					//basic.push(end_time);")
+                    template("					//$.cookie('basic', JSON.stringify(basic), { expires : 1 });")
+                    template("					// $.cookie('mouse_movement', JSON.stringify(mouse_movement));")
+                    template("					// $.cookie('user_action', JSON.stringify(user_action));")
+                    template("					window.location.href='post_question.php';")
+                    template("				}")
+                    template("			} catch (e) {")
+                    template("				alert('Internal error. Please try again.');")
+                    template("			}")
+                    template("		}")
+                    template("	}")
+                    template("	// Sending our request")
+                    template("	xhr.send();      ")
                     template("    }")
 
                     template("mouse_wheel();")
