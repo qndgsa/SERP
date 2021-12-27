@@ -1,4 +1,6 @@
 import json
+import urllib
+
 import mysql.connector
 import sys
 from random import choice
@@ -13,7 +15,7 @@ from airium import Airium
 #     database="serp"
 # )  # database connection
 
-LOCAL = False
+LOCAL = True
 
 
 if LOCAL:
@@ -107,9 +109,7 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
                     entry['URL'])
 #            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                            onclick="url(" + str(position_counter) + ");"):
-            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                                ping=SERVER_URL+"trackings.php?pos=" + str(position_counter),
-                                onclick="url(" + str(position_counter) + ");"):
+            with template.a(href=SERVER_URL+"trackings.php?pos=" + str(position_counter)+"&entry=" + urllib.parse.quote(entry['URL']), target="_blank", style="text-decoration: none;"):
 
                 with template.h2():
                     template(
@@ -128,9 +128,8 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
                     entry['URL'])
 #            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                            onclick="url(" + str(position_counter) + ");"):
-            with template.a(href=entry['URL'], ping=SERVER_URL+"trackings.php?pos=" + str(position_counter)
-                            ,target="_blank", style="text-decoration: none;",
-                            onclick="url(" + str(position_counter) + ");"):
+            with template.a(href=SERVER_URL + "trackings.php?pos=" + str(position_counter) + "&entry=" + urllib.parse.quote(entry['URL']),
+                            target="_blank", style="text-decoration: none;"):
                 with template.h2():
                     template(
                         entry['title'])
@@ -149,9 +148,8 @@ def entry_exception(E_counter, I_counter, U_counter, exception_pos, position_cou
 #            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                            onclick="url(" + str(position_counter) + ");"):
 
-            with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                            ping=SERVER_URL+"trackings.php?pos=" + str(position_counter),
-                            onclick="url(" + str(position_counter) + ");"):
+            with template.a(href=SERVER_URL + "trackings.php?pos=" + str(position_counter) + "&entry=" + urllib.parse.quote(entry['URL']),
+                            target="_blank", style="text-decoration: none;"):
                 with template.h2():
                     template(
                         entry['title'])
@@ -289,9 +287,9 @@ for combination in combination_data:
                                                 entry['URL'])
 #                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                                                        onclick="url(" + str(position_counter) + ");"):
-                                        with template.a(href=entry['URL'],
-                                                        ping=SERVER_URL+"trackings.php?pos=" + str(position_counter)
-                                                    , target="_blank", style="text-decoration: none;"):
+                                        with template.a(href=SERVER_URL + "trackings.php?pos=" + str(
+                                                position_counter) + "&entry=" + urllib.parse.quote(entry['URL']), target="_blank",
+                                                        style="text-decoration: none;"):
                                                             #,onclick="url(" + str(position_counter) + ");"):
                                             with template.h2():
                                                 template(
@@ -315,9 +313,9 @@ for combination in combination_data:
                                                 entry['URL'])
 #                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                                                        onclick="url(" + str(position_counter) + ");"):
-                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
-                                                        ping=SERVER_URL+"trackings.php?pos=" + str(position_counter),
-                                                        onclick="url(" + str(position_counter) + ");"):
+                                        with template.a(
+                                            href=SERVER_URL + "trackings.php?pos=" + str(position_counter) + "&entry=" +
+                                                 urllib.parse.quote(entry['URL']), target="_blank", style="text-decoration: none;"):
                                             with template.h2():
                                                 template(
                                                     entry['title'])
@@ -341,11 +339,9 @@ for combination in combination_data:
                                                 entry['URL'])
 #                                        with template.a(href=entry['URL'], target="_blank", style="text-decoration: none;",
 #                                                        onclick="url(" + str(position_counter) + ");"):
-                                        with template.a(href=entry['URL'], target="_blank",
-                                                            style="text-decoration: none;",
-                                                            ping=SERVER_URL+"trackings.php?pos=" + str(
-                                                                position_counter),
-                                                            onclick="url(" + str(position_counter) + ");"):
+                                        with template.a(href=SERVER_URL + "trackings.php?pos=" + str(
+                                                position_counter) + "&entry=" + urllib.parse.quote(entry['URL']), target="_blank",
+                                                        style="text-decoration: none;"):
 
                                             with template.h2():
                                                 template(
@@ -454,16 +450,19 @@ for combination in combination_data:
                     template("		var len = a_list.length;")
                     template("		for(let i = 0; i < len; ++i){")
                     template("			var a = a_list[i];")
-                    template("			if(a.ping){")
-                    template("				var ping_val = a.ping;")
-                    template("				var index = ping_val.indexOf('t=');")
-                    template("				if(index< 0){")
-                    template("					var user = $.cookie('user');")
-                    template("					ping_val += '&user='+user+'&exp='+exp_id+'&t='+time;")
-                    template("				}else{")
-                    template("					ping_val = ping_val.substring(0,index+2)+time;")
-                    template("				}")
-                    template("				a.ping = ping_val;")
+                    template("			if(a.href){")
+                    template("				var ref_val = a.href;")
+                    template("				var index = ref_val.indexOf('trackings.php');")
+                    template("				if(index>0){")
+                    template("				    var index = ref_val.indexOf('t=');")
+                    template("				    if(index< 0){")
+                    template("					    var user = $.cookie('user');")
+                    template("					    ref_val += '&user='+user+'&exp='+exp_id+'&t='+time;")
+                    template("		    		}else{")
+                    template("			    		ref_val = ref_val.substring(0,index+2)+time;")
+                    template("			    	}")
+                    template("				    a.href = ref_val;")
+                    template("			        }")
                     template("			}")
                     template("		}")
                     template("	}")
@@ -479,7 +478,7 @@ for combination in combination_data:
                     template("  };")
                     template("}();")
 
-                    template("window.setInterval(checkCookie, 100);")
+                    template("//window.setInterval(checkCookie, 100);")
                     template("window.setInterval(update_ping_time, 1000);")
 
                     template("var mouse_movement = [];")

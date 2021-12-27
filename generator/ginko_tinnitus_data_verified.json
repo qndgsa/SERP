@@ -1,94 +1,116 @@
 {
-  "query": "Does Ginkgo Biloba treat tinnitus",
-  "topic": ["tinnitus","Ginkgo Biloba"],
-  "effective": [
-{
-"title": "Ginkgo Biloba for Tinnitus Treatment and Ginkgo Max 26/7",
-"URL": "https://www.tinnitusformula.com/library/ginkgo-biloba-for-tinnitus-treatment-and-ginkgo-max-267/",
-"description": "Several clinical trials have proven that Ginkgo is an effective tinnitus treatment, providing the correct Ginkgo biloba dosage is used.) The Correct Ginkgo ...",
-"id": "1",
-"query":"ginkgo biloba tinnitus"
-},
-{
-"title": "A Clinical Study of Tinnitus - MedCrave",
-"URL": "http://medcraveonline.com/JOENTR/JOENTR-09-00298.pdf",
-"description": "21 Dec 2017 — Ginkgo Biloba and Multivitamin for the Treatment of Tinnitus and their Effect. Keywords: Tinnitus; Tchqs; Hearing loss; Carvoverine; ...",
-"id": "2",
-"query":"ginkgo biloba  tinnitus"
-},
-{
-"title": "The Comparison of Ginkgo biloba and Cinnarizine ... - DOAJ",
-"URL": "https://doaj.org/article/0c84886966dd47e88163750b8f8115bf",
-"description": "1 Jan 2015 — In the present study, effectiveness of Ginkgo biloba with that of cinnarizine on subjective tinnitus were compared and assessed in order to ...",
-"id": "3",
-"query":"ginkgo biloba effective tinnitus"
-}
-],
-"inconclusive": [
-{
-"title": "Ginkgo biloba in the treatment of tinnitus: An updated literature ...",
-"URL": "https://www.tinnitusjournal.com/articles/ginkgo-biloba-in-the-treatment-of-tinnitus-an-updated-literature-review.html",
-"description": "by MR Mahmoudian-Sani · 2017 · Cited by 17 — Studies show that Ginkgo biloba, which is a monoamine-oxidase inhibitor (MAOI) can effectively improve patients with tinnitus caused by",
-"id": "4",
-"query":"ginkgo biloba tinnitus"
-},
-{
-"title": "Can natural remedies help manage tinnitus | Specsavers UK",
-"URL": "https://www.specsavers.co.uk/hearing/ear-health/tinnitus/can-natural-remedies-help-manage-tinnitus",
-"description": "innitus can have a real impact on everyday life, such as a decrease in concentration, sleep problems and hearing loss. · Ginkgo biloba · Vitamin B12 · Melatonin.",
-"id": "5",
-"query":"ginkgo biloba effective tinnitus"
-}
-],
-"ineffective": [
-{
-"title": "Effectiveness of Ginkgo biloba in treating tinnitus - The BMJ",
-"URL": "https://www.bmj.com/content/322/7278/73",
-"description": "by S Drew · 2001 · Cited by 219 — This study has not shown that Ginkgo biloba is effective in treating tinnitus. The extract used in this study (LI 1370 150 mg/day for 12 weeks) ...",
-"id": "6",
-"query":"ginkgo biloba tinnitus"
-},
-{
-"title": "Tinnitus and ginkgo biloba",
-"URL": "https://www.tinnitus.org.uk/tinnitus-and-ginkgo-biloba",
-"description": "15 Apr 2019 — Although independent evidence is limited, what there is does not show that Ginkgo biloba is effective for tinnitus. The potential side effects ...Verdict: Efficacy - does this treatment work?: E...Verdict: Safety - is this treatment harmful?: Evi...BTA opinion on this treatment: Although indep...Type of treatment: Dietary supplement",
-"id": "8",
-"query":"ginkgo biloba tinnitus"
-},
-{
-"title": "Ginkgo biloba for tinnitus | Cochrane",
-"URL": "https://www.cochrane.org/CD003852/ENT_ginkgo-biloba-for-tinnitus",
-"description": "28 Mar 2013 — Few good-quality trials were found. Four studies were included in the review, with a total of 1543 participants. The included studies were ...",
-"id": "9",
-"query":"ginkgo biloba tinnitus"
-},
-{
-"title": "Ginkgo biloba for the treatment of tinnitus - Medwave",
-"URL": "https://www.medwave.cl/link.cgi/English/Updates/Epistemonikos/7294.act",
-"description": "by F Kramer · 2018 · Cited by 8 — Key Words: Ginkgo biloba, tinnitus, Epistemonikos, GRADE ... the treatment of tinnitus, but none has been established as clearly effective.",
-"id": "10",
-"query":"ginkgo biloba effective tinnitus"
-},
-{
-"title": "GINKGO: Overview, Uses, Side Effects, Precautions ... - WebMD",
-"URL": "https://www.webmd.com/vitamins/ai/ingredientmono-333/ginkgo",
-"description": "Ginkgo (Ginkgo biloba) is a large tree with fan-shaped leaves. ... Ringing in the ears (tinnitus). Taking ginkgo leaf extract by mouth does not seem to ...",
-"id": "11",
-"query":"ginkgo biloba tinnitus"
-},
-{
-"title": "Ginkgo biloba Extract for the Treatment of Tinnitus - Taylor ...",
-"URL": "https://www.tandfonline.com/doi/abs/10.3109/00206099409071870",
-"description": "by KM Holgers · 1994 · Cited by 108 — Previous studies have shown contradictory results of Ginkgo biloba extract (GBE) treatment of tinnitus. The present study was divided into two parts: first ...",
-"id": "12",
-"query":"ginkgo biloba tinnitus"
-},
-{
-"title": "Natural Remedies for Tinnitus - Verywell Health",
-"URL": "https://www.verywellhealth.com/natural-remedies-for-tinnitus-89317",
-"description": "Ginkgo Biloba — An herb said to stimulate circulation, ginkgo biloba may have an impact on a subset of people with tinnitus. For a report published in the ...",
-"id": "13",
-"query":"ginkgo biloba tinnitus"
-}
-]
+	"query": "Does Ginkgo Biloba treat tinnitus",
+	"topic": [
+		"tinnitus",
+		"Ginkgo Biloba"
+	],
+	"effective": [
+		{
+			"title": "Ginkgo Biloba for Tinnitus Treatment and Ginkgo Max 26/7",
+			"URL": "https://www.tinnitusformula.com/library/ginkgo-biloba-for-tinnitus-treatment-and-ginkgo-max-267/",
+			"description": "Several clinical trials have proven that Ginkgo is an effective tinnitus treatment, providing the correct Ginkgo biloba dosage is used.) The Correct Ginkgo ...",
+			"id": "1",
+			"query": "ginkgo biloba tinnitus"
+		},
+		{
+			"title": "A Clinical Study of Tinnitus - MedCrave",
+			"URL": "http://medcraveonline.com/JOENTR/JOENTR-09-00298.pdf",
+			"description": "21 Dec 2017 — Ginkgo Biloba and Multivitamin for the Treatment of Tinnitus and their Effect. Keywords: Tinnitus; Tchqs; Hearing loss; Carvoverine; ...",
+			"id": "2",
+			"query": "ginkgo biloba  tinnitus"
+		},
+		{
+			"title": "The Comparison of Ginkgo biloba and Cinnarizine ... - DOAJ",
+			"URL": "https://doaj.org/article/0c84886966dd47e88163750b8f8115bf",
+			"description": "1 Jan 2015 — In the present study, effectiveness of Ginkgo biloba with that of cinnarizine on subjective tinnitus were compared and assessed in order to ...",
+			"id": "3",
+			"query": "ginkgo biloba effective tinnitus"
+		}
+	],
+	"inconclusive": [
+		{
+			"title": "Ginkgo biloba in the treatment of tinnitus: An updated literature ...",
+			"URL": "https://www.tinnitusjournal.com/articles/ginkgo-biloba-in-the-treatment-of-tinnitus-an-updated-literature-review.html",
+			"description": "by MR Mahmoudian-Sani · 2017 · Cited by 17 — Studies show that Ginkgo biloba, which is a monoamine-oxidase inhibitor (MAOI) can effectively improve patients with tinnitus caused by",
+			"id": "4",
+			"query": "ginkgo biloba tinnitus"
+		},
+		{
+			"title": "Can natural remedies help manage tinnitus | Specsavers UK",
+			"URL": "https://www.specsavers.co.uk/hearing/ear-health/tinnitus/can-natural-remedies-help-manage-tinnitus",
+			"description": "innitus can have a real impact on everyday life, such as a decrease in concentration, sleep problems and hearing loss. · Ginkgo biloba · Vitamin B12 · Melatonin.",
+			"id": "5",
+			"query": "ginkgo biloba effective tinnitus"
+		}
+	],
+	"ineffective": [
+		{
+			"title": "Effectiveness of Ginkgo biloba in treating tinnitus - The BMJ",
+			"URL": "https://www.bmj.com/content/322/7278/73",
+			"description": "by S Drew · 2001 · Cited by 219 — This study has not shown that Ginkgo biloba is effective in treating tinnitus. The extract used in this study (LI 1370 150 mg/day for 12 weeks) ...",
+			"id": "6",
+			"query": "ginkgo biloba tinnitus"
+		},
+		{
+			"title": "Tinnitus and ginkgo biloba",
+			"URL": "https://www.tinnitus.org.uk/tinnitus-and-ginkgo-biloba",
+			"description": "15 Apr 2019 — Although independent evidence is limited, what there is does not show that Ginkgo biloba is effective for tinnitus. The potential side effects ...Verdict: Efficacy - does this treatment work?: E...Verdict: Safety - is this treatment harmful?: Evi...BTA opinion on this treatment: Although indep...Type of treatment: Dietary supplement",
+			"id": "8",
+			"query": "ginkgo biloba tinnitus"
+		},
+		{
+			"title": "Ginkgo biloba for tinnitus | Cochrane",
+			"URL": "https://www.cochrane.org/CD003852/ENT_ginkgo-biloba-for-tinnitus",
+			"description": "28 Mar 2013 — Few good-quality trials were found. Four studies were included in the review, with a total of 1543 participants. The included studies were ...",
+			"id": "9",
+			"query": "ginkgo biloba tinnitus"
+		},
+		{
+			"title": "Ginkgo biloba for the treatment of tinnitus - Medwave",
+			"URL": "https://www.medwave.cl/link.cgi/English/Updates/Epistemonikos/7294.act",
+			"description": "by F Kramer · 2018 · Cited by 8 — Key Words: Ginkgo biloba, tinnitus, Epistemonikos, GRADE ... the treatment of tinnitus, but none has been established as clearly effective.",
+			"id": "10",
+			"query": "ginkgo biloba effective tinnitus"
+		},
+		{
+			"title": "GINKGO: Overview, Uses, Side Effects, Precautions ... - WebMD",
+			"URL": "https://www.webmd.com/vitamins/ai/ingredientmono-333/ginkgo",
+			"description": "Ginkgo (Ginkgo biloba) is a large tree with fan-shaped leaves. ... Ringing in the ears (tinnitus). Taking ginkgo leaf extract by mouth does not seem to ...",
+			"id": "11",
+			"query": "ginkgo biloba tinnitus"
+		},
+		{
+			"title": "Ginkgo biloba Extract for the Treatment of Tinnitus - Taylor ...",
+			"URL": "https://www.tandfonline.com/doi/abs/10.3109/00206099409071870",
+			"description": "by KM Holgers · 1994 · Cited by 108 — Previous studies have shown contradictory results of Ginkgo biloba extract (GBE) treatment of tinnitus. The present study was divided into two parts: first ...",
+			"id": "12",
+			"query": "ginkgo biloba tinnitus"
+		},
+		{
+			"title": "Natural Remedies for Tinnitus - Verywell Health",
+			"URL": "https://www.verywellhealth.com/natural-remedies-for-tinnitus-89317",
+			"description": "Ginkgo Biloba — An herb said to stimulate circulation, ginkgo biloba may have an impact on a subset of people with tinnitus. For a report published in the ...",
+			"id": "13",
+			"query": "ginkgo biloba tinnitus"
+		}
+	],
+	"ads":[
+		{
+			"title": "Ginkgo Biloba Extract - 60 mg - 150 Capsules | Herbs & Herbal...",
+			"URL": "https://www.bronsonvitamins.com/ginkgo-biloba-extract-60-mg-150-capsules.html?gclid=CjwKCAiAtouOBhA6EiwA2nLKHzngEO24_eBQsO7nu-dyE2JX1X36eWqJtGOCEEmgGz9Mfo092kDrRhoCkVAQAvD_BwE",
+			"short_url": "https://www.bronsonvitamins.com/",
+			"description": "Shop Bronson Vitamins. 60 Years Of Quality Herbs. One Year Money Back Guarantee. Free Shipping Everyday. Shop Now & Save. 100% Satisfaction Guaranteed. Shop Now.",
+			"id": "14",
+			"query": "buy ginko biloba"
+		},
+		{
+			"title": "Ginkgo Biloba Herb - 20% Off New Items Every Day - iHerb.com",
+			"URL": "https://www.iherb.com/c/ginkgo-biloba?gclid=CjwKCAiAtouOBhA6EiwA2nLKH8R2i398166Ip9G3COclqeICjcAL3wGD46BEKvNvOwYolv-Fj0NlCRoCMwAQAvD_BwE",
+			"short_url": "https://www.iherb.com/",
+			"description": "Don't Miss Out on Our December Daily Deals! Save on Trusted Health & Beauty Brands.",
+			"id": "15",
+			"query": "buy ginko biloba"
+		}
+		
+	]
 }

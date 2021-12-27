@@ -91,5 +91,31 @@
 "query":"melatonin does not help jet lag",
 "se":"bing"
 }
+],
+"ads": [
+  {
+			"title": "Nature's Bounty® Melatonin - Sleep Aid Supplement*",
+			"URL": "https://www.amazon.com/stores/page/4A35E72D-EC91-4CE6-B66F-AFE4EEAE4967?tag=meastus-20&channel=nb_sem_21&gclid=CjwKCAiAtouOBhA6EiwA2nLKH4UQ1gpkvf6TCjLPLtxDCteCzHDxCUdqZYAIdVyCXXQVlqpZMPz3MBoCyZkQAvD_BwE",
+			"short_url": "https://www.amazon.com/",
+			"description": "Falling Asleep Will Be Like A Bed Of Roses With Nature’s Bounty Botanical Sleep Tablets.*",
+			"id": "13",
+			"query": "buy melatonin"
+  },
+  {
+			"title": "Intranasal Melatonin - Money Back Guarantee.",
+			"URL": "https://gorillahealing.com/product/melatonin-nasal-spray/?gclid=CjwKCAiAtouOBhA6EiwA2nLKH5_0H_T5CURQWJP2nN9PnNAYrU4tOWTFiGHQkOhHGZQUQBZVoFgGWxoCJ_0QAvD_BwE",
+			"short_url": "https://gorillahealing.com/",
+			"description": "High relative levels of melatonin help signify that it is time for your body to sleep. Delivered...",
+			"id": "14",
+			"query": "buy melatonin"
+  },
+  {
+			"title": "Natrol® Melatonin - #1 Melatonin Brand In America*",
+			"URL": "https://www.natrol.com/store/sleep-support?utm_source=google&utm_network=g&utm_medium=cpc&utm_device=c&utm_geo=2840&utm_matchtype=p&utm_creative=555208531129&utm_kw=melatonin&utm_flight=q4fy19&gclid=CjwKCAiAtouOBhA6EiwA2nLKH05-VpFTQNIwK_ie9ISgEuaJ5z-OaafYgUp4w9er1sHsVXZniUxebhoCt-AQAvD_BwE",
+			"short_url": "https://www.natrol.com/",
+			"description": "Fall Asleep Faster, Stay Asleep Longer With Natrol® Melatonin.† Sold Online & In Stores.",
+			"id": "15",
+			"query": "buy melatonin"
+  }
 ]
 }
