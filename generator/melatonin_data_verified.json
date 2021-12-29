@@ -117,5 +117,17 @@
 			"id": "15",
 			"query": "buy melatonin"
   }
-]
+],
+		"image_ads": [
+		{
+    		"title": "",
+    		"URL": "",
+    		"img_link": "",
+    		"description": "",
+    		"price": "",
+    		"brand": "",
+    		"rating": "",
+    		"rating comment": ""
+		}
+	]
 }
